@@ -1,1 +1,5 @@
-O `mutmut show` revelou que a ferramenta alterou o operador `>=` para `>` (ou o limite `700` para `701`). O teste original passou com score `850` porque esse valor é bem superior ao limite, sendo insensível à mudança de operador na fronteira. A "Análise do Valor Limite" é fundamental para matar esses mutantes pois testa os pontos exatos de transição (`699`, `700`, `5000.00`, `5000.01`), garantindo que qualquer alteração indevida na lógica condicional quebre os testes imediatamente.
+O mutmut show evidencia que um mutante pode trocar >= 700 por > 700, alterando a regra no limite.
+O teste com score exatamente igual a 700 detecta essa mudança, pois a aprovação esperada é True.
+A análise de valor limite verifica os valores imediatamente abaixo, exatamente no limite e acima dele.
+Isso revela falhas que testes com valores muito distantes do limite podem não detectar.
+Assim, os testes ficam mais rigorosos e conseguem eliminar mutantes que alteram as condições da regra.
